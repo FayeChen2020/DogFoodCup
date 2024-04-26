@@ -6,15 +6,19 @@ volumn = 354
 h = 6
 r = sqrt(volumn/(h*3.14))
 thickness = 0.3
-threads = thread([[0, -0.5], [0, 0], [-0.2, 0], [-0.2, -0.5]],r,1,h)
+t=0.1
+threads = thread([[0.15, -0.5+t],[0.15, 0-t], [-0.15, 0+t],[-0.15, -0.5-t] ],r,1,h+1)
 
 
-d = difference()(
+bottom = difference()(
     cylinder(r=r+thickness,h=h),
-    up(thickness)(union()(threads,cylinder(r=r,h=h)))
-)
+    up(thickness)(union()(threads,cylinder(r=r,h=h))))
+
+
+top = difference()(cylinder(r=r+thickness-0.01,h=h+thickness),union()(bottom,cylinder(r=r-thickness,h=h*2)))
 
 
 print(r)
-scad_render_to_file(d, 'dogfoodcup.scad', file_header = '$fn=180;')
+scad_render_to_file(top, 'dogfoodcup.scad', file_header = '$fn=180;')
+
 
