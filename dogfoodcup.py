@@ -24,10 +24,14 @@ bottom = difference()(
     union()(cylinder(r=r+thickness,h=h),up(h-thickness/2)(indicator2)),
     up(thickness)(union()(threads,cylinder(r=r,h=h))))
 
+bottom = scale(10)(bottom)
+
 
 top = difference()(
     union()(cylinder(r=r+thickness-0.01,h=h+thickness),up(h+thickness/2)(indicator)),
     union()(bottom,cylinder(r=r-thickness,h=h*2)))
+
+top = scale(10)(top)
 
 
 print(r)
